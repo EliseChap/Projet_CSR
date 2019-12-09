@@ -18,7 +18,7 @@ import org.restlet.resource.ServerResource;
 
 /**
  *
- * Resource exposing a user.
+ * Ressource qui s'occupe du buffet
  *
  * @author msimonin
  * @author ctedeschi
@@ -31,7 +31,7 @@ public class BuffetRessource extends ServerResource
     /** Backend.*/
     private Backend backend_;
 
-    /** Utilisateur gÃ©rÃ© par cette resource.*/
+    /** Buffets générés par cette ressource.*/
     private BuffetLegumes legumes_ = new BuffetLegumes();
     private BuffetViande viande_ = new BuffetViande();
     private BuffetPoisson poisson_ = new BuffetPoisson();
@@ -48,6 +48,12 @@ public class BuffetRessource extends ServerResource
     }
 
 
+    /**
+     * Cette méthode permet de récupérer en json l'état du buffet
+     * 
+     * @return une JsonRepresentation
+     * @throws Exception
+     */
     @Get("json")
     public Representation getEtatClient() throws Exception
     {       

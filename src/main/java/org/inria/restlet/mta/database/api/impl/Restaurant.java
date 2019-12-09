@@ -9,6 +9,14 @@ import org.inria.restlet.mta.backend.EmployeBuffet;
 import org.inria.restlet.mta.backend.StandCuisson;
 import org.inria.restlet.mta.database.api.Database;
 
+
+/**
+ * Cette classe s'occupe de ce qu'il se passe à l'entrée du restaurant.
+ * 
+ * @author Elise CHAPON
+ * @author Maëlla GHERAIA
+ *
+ */
 public class Restaurant implements Database {
 
 	private final static int nbClientsTotal = 50;
@@ -34,6 +42,9 @@ public class Restaurant implements Database {
 		}
 	}
 
+	/**
+	 * Le restaurant ouvre et les processus employebuffet, cuisinier et client démarrent.
+	 */
 	public synchronized void debut() {
 
 		employebuffet.start();
@@ -56,20 +67,42 @@ public class Restaurant implements Database {
 		}
 	}
 
+	
+	/**
+	 * Cette méthode décrémente la variable nbClients qui permet de savoir combien de client sont présent
+	 * dans le restaurant
+	 */
 	public synchronized void clientSort() {
 		nbClients--;
 		notifyAll();
 	}
 
+	
+	/**
+	 * Cette méthode permet de récupérer le stand cuisson
+	 * @return standcuisson
+	 */
 	public StandCuisson getStandCuisson() {
 		return standcuisson;
 	}
 
+	
+	/**
+	 * Permet de récupérer dans un tableau tous les clients déclarés
+	 * 
+	 * @return la liste des clients
+	 */
 	@Override
 	public Clients[] getClients() {
 		return this.clients;
 	}
 
+	
+	/**
+	 * Permet de récupérer le client dont l'id est clientId
+	 * 
+	 * @param clientId		Id du client que l'on veut récupéré
+	 */
 	@Override
 	public Clients getClient(int clientId) {
 

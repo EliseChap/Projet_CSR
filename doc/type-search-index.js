@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.inria.restlet.mta.database.api.impl","l":"Restaurant"}]

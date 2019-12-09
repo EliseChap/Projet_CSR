@@ -1,34 +1,45 @@
 package org.inria.restlet.mta.backend; 
 
+/**
+ * Cette classe s'occupe du bacs de nouilles du buffet
+ * 
+ * @author Elise CHAPON
+ * @author Maëlla GHERAIA
+ *
+ */
 public class BuffetNouilles {
 	
 	private static int BacNouilles=1000; 
 	
-public synchronized static void accederBac(int qte) throws InterruptedException {
-		
-					
-		BacNouilles-=qte; 
-
-}
-
-public synchronized void reapprovisioner() {
 	
-	if(BacNouilles<100) {
-		
-		BacNouilles=1000; 
-		notifyAll(); 
-		
+	/**
+	 * Cette méthode permet d'accéder au bac à nouilles
+	 * 
+	 * @param qte
+	 * @throws InterruptedException
+	 */
+	public synchronized static void accederBac(int qte) throws InterruptedException {					
+		BacNouilles-=qte; 
+	}
+
+	
+	/**
+	 * Cette méthode réapprovisionne le bac à nouilles
+	 */
+	public synchronized void reapprovisioner() {		
+		if(BacNouilles<100) {
+			BacNouilles=1000; 
+			notifyAll(); 
+		}
 	}
 	
 	
-}
-
-public int getsize() {
-	
-	return BacNouilles; 
-	
-	
-}
+	/**
+	 * @return BacLegumes   la taille du bac à nouilles
+	 */
+	public int getsize() {
+		return BacNouilles; 	
+	}
 
 }
 

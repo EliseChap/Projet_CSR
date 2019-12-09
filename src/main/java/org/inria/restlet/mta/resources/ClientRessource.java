@@ -17,10 +17,10 @@ import org.restlet.resource.ServerResource;
 
 /**
  *
- * Resource exposing a user.
+ * Ressource qui s'occupe des clients.
  *
- * @author msimonin
- * @author ctedeschi
+ * @author Elise CHAPON
+ * @author Maëlla GHERAIA
  *
  */
 public class ClientRessource extends ServerResource
@@ -29,18 +29,25 @@ public class ClientRessource extends ServerResource
     /** Backend.*/
     private Backend backend_;
 
-    /** Utilisateur gÃ©rÃ© par cette resource.*/
+    /** Client généré par cette resource.*/
     private Clients client_ ;
 
     /**
      * Constructor.
-     * Call for every single user request.
+     * Call for every single client request.
      */
     public ClientRessource()
     {
         backend_ = (Backend) getApplication().getContext().getAttributes().get("backend");
     }
 
+    
+    /**
+     * Cette méthode permet de récupérer en json l'état du client qui a clientId comme id
+     * 
+     * @return une JsonRepresentation
+     * @throws Exception
+     */
     @Get("json")
     public Representation getEtatClient() throws Exception
     {

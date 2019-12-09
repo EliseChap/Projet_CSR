@@ -7,29 +7,26 @@ import org.inria.restlet.mta.backend.Clients;
 
 /**
  *
- * Interface to the database.
+ * Interface de la database
  *
- * @author msimonin
- *
+ * @author Elise CHAPON
+ * @author Maëlla GHERAIA
  */
 public interface Database
 {
-    
-
-    /**
-     *
-     * Returns the list of clients.
-     *
-     * @return the list of clients
-     */
+	/**
+	 * Permet de récupérer dans un tableau tous les clients déclarés
+	 * 
+	 * @return la liste des clients
+	 */
 	Clients[] getClients();
 
 
-    /**
-     *  Returns the client with a given id.
-     *
-     *  @return the client
-     */
+	/**
+	 * Permet de récupérer le client dont l'id est clientId
+	 * 
+	 * @param clientId		Id du client que l'on veut récupéré
+	 */
     Clients getClient(int clientId);
 
 }

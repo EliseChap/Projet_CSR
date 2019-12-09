@@ -12,7 +12,8 @@ import org.restlet.routing.Router;
  *
  * Application.
  *
- * @author msimonin
+ *@author Elise CHAPON
+ *@author Maëlla GHERAIA
  *
  */
 public class MyRestaurantApplication extends Application
