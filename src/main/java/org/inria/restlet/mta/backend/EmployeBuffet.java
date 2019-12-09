@@ -18,10 +18,10 @@ public class EmployeBuffet extends Thread{
 	 */
 	public void run() {
 		while(true) {
-			l.reapprovisioner();
-			v.reapprovisioner();
-			p.reapprovisioner();
-			n.reapprovisioner();
+			l.reapprovisionner();
+			v.reapprovisionner();
+			p.reapprovisionner();
+			n.reapprovisionner();
 		}
 	}
 

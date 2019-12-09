@@ -25,7 +25,7 @@ public class BuffetViande {
 	/**
 	 * Cette méthode réapprovisionne le bac à viande
 	 */
-	public synchronized void reapprovisioner() {
+	public synchronized void reapprovisionner() {
 		if(BacViande<100) {
 			BacViande=1000; 
 			notifyAll(); 

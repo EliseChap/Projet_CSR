@@ -25,7 +25,7 @@ public class BuffetPoisson {
 	/**
 	 * Cette méthode réapprovisionne le bac à poisson
 	 */
-	public synchronized void reapprovisioner() {
+	public synchronized void reapprovisionner() {
 		
 		if(BacPoisson<100) {
 			BacPoisson=1000; 

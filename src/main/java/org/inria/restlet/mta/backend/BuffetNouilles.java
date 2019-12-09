@@ -26,7 +26,7 @@ public class BuffetNouilles {
 	/**
 	 * Cette méthode réapprovisionne le bac à nouilles
 	 */
-	public synchronized void reapprovisioner() {		
+	public synchronized void reapprovisionner() {		
 		if(BacNouilles<100) {
 			BacNouilles=1000; 
 			notifyAll(); 

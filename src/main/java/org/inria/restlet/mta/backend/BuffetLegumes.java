@@ -25,7 +25,7 @@ public class BuffetLegumes {
 	/**
 	 * Cette méthode réapprovisionne le bac à légumes
 	 */
-	public synchronized void reapprovisioner() {
+	public synchronized void reapprovisionner() {
 		
 		if(BacLegumes<100) {
 			BacLegumes=1000; 
