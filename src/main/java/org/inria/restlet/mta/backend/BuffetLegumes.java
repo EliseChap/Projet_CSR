@@ -17,8 +17,10 @@ public class BuffetLegumes {
 	 * @param qte
 	 * @throws InterruptedException
 	 */
-	public synchronized static void  accederBac(int qte) throws InterruptedException {
-			BacLegumes-=qte; 
+	public synchronized static void  accederBac(int qte) throws InterruptedException {	
+		BacLegumes-=qte;
+		System.out.println("quantité du bac à légumes" + BacLegumes);
+		
 	}
 	
 	

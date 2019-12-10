@@ -53,7 +53,6 @@ public class ClientRessource extends ServerResource
     {
         String clientIdString = (String) getRequest().getAttributes().get("clientId");
         int clientId = Integer.valueOf(clientIdString);
-        System.out.println(clientId);
         client_ = backend_.getDatabase().getClient(clientId);
 
         JSONObject clientObject = new JSONObject();

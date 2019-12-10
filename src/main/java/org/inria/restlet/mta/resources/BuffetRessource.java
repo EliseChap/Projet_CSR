@@ -55,15 +55,14 @@ public class BuffetRessource extends ServerResource
      * @throws Exception
      */
     @Get("json")
-    public Representation getEtatClient() throws Exception
+    public Representation getEtatBuffet() throws Exception
     {       
+        JSONObject buffetObject = new JSONObject();
+        buffetObject.put("etatlegumes", legumes_.getsize());
+        buffetObject.put("etatviande", viande_.getsize());
+        buffetObject.put("etatpoisson", poisson_.getsize());
+        buffetObject.put("etatnouilles", nouilles_.getsize());
 
-        JSONObject clientObject = new JSONObject();
-        clientObject.put("etatlegumes", legumes_.getsize());
-        clientObject.put("etatviande", viande_.getsize());
-        clientObject.put("etatpoisson", poisson_.getsize());
-        clientObject.put("etatnouilles", nouilles_.getsize());
-
-        return new JsonRepresentation(clientObject);
+        return new JsonRepresentation(buffetObject);
     }
 }

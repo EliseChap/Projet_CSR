@@ -32,14 +32,12 @@ public class Cuisinier extends Thread{
 	/**
 	 * Le cuisinier cuit.
 	 */
-	public synchronized void cuisiner() throws InterruptedException {
+	public void cuisiner() throws InterruptedException {
 
 		try {
 			sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		notify(); 
 	}
 }
