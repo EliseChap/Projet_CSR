@@ -1,5 +1,7 @@
 package org.inria.restlet.mta.backend;
 
+import org.inria.restlet.mta.database.api.impl.Restaurant;
+
 /**
  * Cette classe s'occupe du processus employeBuffet
  * 
@@ -7,53 +9,24 @@ package org.inria.restlet.mta.backend;
  * @author Maëlla GHERAIA
  */
 public class EmployeBuffet extends Thread{
+ 
+	Restaurant restaurant;
 
-	private static BuffetLegumes l = new BuffetLegumes(); 
-	private static BuffetViande v = new BuffetViande(); 
-	private static BuffetPoisson p = new BuffetPoisson(); 
-	private static BuffetNouilles n = new BuffetNouilles(); 
+	public EmployeBuffet(Restaurant restaurant) {
+		super();
+		this.restaurant = restaurant;
+	}
 
 	/**
 	 * Cette méthode réapprovisionne les bacs du buffet
 	 */
 	public void run() {
 		while(true) {
-			l.reapprovisionner();
-			v.reapprovisionner();
-			p.reapprovisionner();
-			n.reapprovisionner();
+			restaurant.getLegumes().reapprovisionner();
+			restaurant.getViandes().reapprovisionner();
+			restaurant.getNouilles().reapprovisionner();
+			restaurant.getPoissons().reapprovisionner();
 		}
 	}
 
-	
-	/**
-	 * @return l  le buffet de légumes
-	 */
-	public static BuffetLegumes getBuffetLegumes() {
-		return l; 
-	}
-
-	
-	/**
-	 * @return v  le buffet de viandes
-	 */
-	public static BuffetViande getBuffetViande() {
-		return v; 
-	}
-
-	
-	/**
-	 * @return p  le buffet de poissons
-	 */
-	public static BuffetPoisson getBuffetPoisson() {
-		return p; 
-	}
-
-
-	/**
-	 * @return n  le buffet de nouilles
-	 */
-	public static BuffetNouilles getBuffetNouilles() {
-		return n; 
-	}
 }

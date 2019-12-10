@@ -8,7 +8,7 @@ package org.inria.restlet.mta.backend;
  */
 public class BuffetPoisson {
 	
-	private static int BacPoisson = 1000; 
+	private int BacPoisson = 1000; 
 
 	
 	/**
@@ -17,7 +17,7 @@ public class BuffetPoisson {
 	 * @param qte
 	 * @throws InterruptedException
 	 */
-	public synchronized static void accederBac(int qte) throws InterruptedException {	
+	public synchronized void accederBac(int qte) throws InterruptedException {	
 		BacPoisson-=qte; 
 	}
 

@@ -9,7 +9,7 @@ package org.inria.restlet.mta.backend;
  */
 public class BuffetLegumes {
 	
-	private static int BacLegumes = 1000;
+	private int BacLegumes = 1000;
 	
 	/**
 	 * Cette méthode permet d'accéder au bac à légumes
@@ -17,10 +17,8 @@ public class BuffetLegumes {
 	 * @param qte
 	 * @throws InterruptedException
 	 */
-	public synchronized static void  accederBac(int qte) throws InterruptedException {	
-		BacLegumes-=qte;
-		System.out.println("quantité du bac à légumes" + BacLegumes);
-		
+	public synchronized void  accederBac(int qte) throws InterruptedException {	
+		BacLegumes-=qte;		
 	}
 	
 	
@@ -39,7 +37,7 @@ public class BuffetLegumes {
 	/**
 	 * @return BacLegumes   la taille du bac à légumes
 	 */
-	public int getsize() {
+	public int  getsize() {
 		return BacLegumes; 
 	}
 		

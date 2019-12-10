@@ -9,7 +9,7 @@ import org.inria.restlet.mta.database.api.impl.Restaurant;
  */
 public class StandCuisson {
 
-	private static int nbClientsStand=0; 
+	private int nbClientsStand=0; 
 	Restaurant restaurant;
 
 	public StandCuisson(Restaurant restaurant) {
@@ -22,7 +22,7 @@ public class StandCuisson {
 	 * Cette méthode récupère le nombre de clients au stand
 	 * @return	nbClientsStand
 	 */
-	public static int getNombreClients() {
+	public int getNombreClients() {
 		return nbClientsStand; 
 	}
 

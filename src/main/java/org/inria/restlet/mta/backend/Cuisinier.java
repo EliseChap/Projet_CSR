@@ -22,8 +22,7 @@ public class Cuisinier extends Thread{
 	 */
 	public void run() {
 		while(true) {
-			restaurant.getStandCuisson();
-			while(StandCuisson.getNombreClients()>=1) {
+			while(restaurant.getStandCuisson().getNombreClients()>=1) {
 				try {cuisiner();} catch (InterruptedException e) {e.printStackTrace();} 
 			}
 		}

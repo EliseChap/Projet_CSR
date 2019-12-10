@@ -14,8 +14,8 @@ import org.inria.restlet.mta.database.api.impl.Restaurant;
 public class Clients extends Thread{
 
 	private static int affichageClient = 0; 
-	private static int id = 0; 
-	private static String etat = "WAITING_TO_ENTER"; 
+	private int id = 0; 
+	private String etat = "WAITING_TO_ENTER"; 
 	Restaurant restaurant;
 
 	public Clients(Restaurant restaurant) {
@@ -40,7 +40,7 @@ public class Clients extends Thread{
 
 		standCuisson(); 
 		manger(); 
-		sortir(); 
+		sortir();
 	}
 
 
@@ -50,7 +50,7 @@ public class Clients extends Thread{
 	public synchronized void standCuisson() {
 		etat = "WAITING_THE_COOK"; 
 
-		while(StandCuisson.getNombreClients()>1) {
+		while(restaurant.getStandCuisson().getNombreClients()>1) {
 			try {wait();} catch (InterruptedException e) {e.printStackTrace();} 
 		}		
 		restaurant.getStandCuisson().decrementerNombreClients();
@@ -64,11 +64,11 @@ public class Clients extends Thread{
 	public synchronized void buffetLegume() throws InterruptedException {
 
 		int qte =	(int) (Math.random() * ( 100 - 0 )); 
-		int duree =	(int) (Math.random() * ( 300 - 200 )); 
-		while(EmployeBuffet.getBuffetLegumes().getsize()<qte) {			
+		int duree =	(int) (Math.random() * ( 300 - 200 ));
+		while(restaurant.getLegumes().getsize()<qte) {			
 			wait();
 		}
-		BuffetLegumes.accederBac(qte); 
+		restaurant.getLegumes().accederBac(qte); 
 		sleep(duree); 
 	}
 
@@ -81,11 +81,11 @@ public class Clients extends Thread{
 
 		int qte =	(int) (Math.random() * ( 100 - 0 )); 
 		int duree =	(int) (Math.random() * ( 300 - 200 ));
-		while(EmployeBuffet.getBuffetViande().getsize()<qte) {
+		while(restaurant.getViandes().getsize()<qte) {
 			wait();
 		}
 
-		BuffetViande.accederBac(qte); 
+		restaurant.getViandes().accederBac(qte); 
 		sleep(duree); 		
 	}
 
@@ -99,11 +99,11 @@ public class Clients extends Thread{
 		int qte =	(int) (Math.random() * ( 100 - 0 )); 
 		int duree =	(int) (Math.random() * ( 300 - 200 )); 
 
-		while(EmployeBuffet.getBuffetNouilles().getsize()<qte) {
+		while(restaurant.getNouilles().getsize()<qte) {
 			wait();
 		}
 
-		BuffetNouilles.accederBac(qte); 
+		restaurant.getNouilles().accederBac(qte); 
 		sleep(duree); 
 	}
 
@@ -117,10 +117,10 @@ public class Clients extends Thread{
 		int qte =	(int) (Math.random() * ( 100 - 0 )); 
 		int duree =	(int) (Math.random() * ( 300 - 200 )); 
 
-		while(EmployeBuffet.getBuffetPoisson().getsize()<qte) {
+		while(restaurant.getPoissons().getsize()<qte) {
 			wait();
 		}
-		BuffetPoisson.accederBac(qte); 
+		restaurant.getPoissons().accederBac(qte); 
 		sleep(duree); 
 	}
 
@@ -128,7 +128,7 @@ public class Clients extends Thread{
 	/**
 	 * Le client mange
 	 */
-	public static void manger() {
+	public void manger() {
 		etat = "EATING"; 
 
 		try {sleep(100);	} catch (InterruptedException e) {e.printStackTrace();} 
@@ -139,9 +139,8 @@ public class Clients extends Thread{
 	 * Le client sort
 	 */
 	public synchronized void sortir() {
-
 		affichageClient++;
-		System.out.println("Nombre de clients qui sortent du restaurant :" + affichageClient);
+		System.out.println("Nombre de clients qui sortent du restaurant:  " +affichageClient);
 		restaurant.clientSort(); 			
 		etat ="OUT"; 				
 	}

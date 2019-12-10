@@ -3,6 +3,10 @@ package org.inria.restlet.mta.database.api.impl;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.inria.restlet.mta.backend.BuffetLegumes;
+import org.inria.restlet.mta.backend.BuffetNouilles;
+import org.inria.restlet.mta.backend.BuffetPoisson;
+import org.inria.restlet.mta.backend.BuffetViande;
 import org.inria.restlet.mta.backend.Clients;
 import org.inria.restlet.mta.backend.Cuisinier;
 import org.inria.restlet.mta.backend.EmployeBuffet;
@@ -23,16 +27,25 @@ public class Restaurant implements Database {
 	private final static int sizeMax = 25;
 	private int nbClients = 0;
 	private int affichageClient = 0;
-	private EmployeBuffet employebuffet = new EmployeBuffet();
+	private EmployeBuffet employebuffet;
 	private Cuisinier cuisinier;
 	private Clients[] clients;
 	private StandCuisson standcuisson;
+	private BuffetLegumes legumes;
+	private BuffetViande viandes;
+	private BuffetNouilles nouilles;
+	private BuffetPoisson poissons;
+	
 
 	public Restaurant() {
 		super();
-		this.employebuffet = new EmployeBuffet();
+		this.employebuffet = new EmployeBuffet(this);
 		this.standcuisson = new StandCuisson(this);
 		this.cuisinier = new Cuisinier(this);
+		this.legumes = new BuffetLegumes();
+		this.viandes = new BuffetViande();
+		this.nouilles = new BuffetNouilles();
+		this.poissons = new BuffetPoisson();
 		clients = new Clients[this.nbClientsTotal];
 
 		for (int i = 0; i < nbClientsTotal; i++) {
@@ -41,6 +54,8 @@ public class Restaurant implements Database {
 			System.out.println("Le client" + clients[i].getId() + " est crée");
 		}
 	}
+
+	
 
 	/**
 	 * Le restaurant ouvre et les processus employebuffet, cuisinier et client démarrent.
@@ -53,7 +68,6 @@ public class Restaurant implements Database {
 		for (Clients client : clients) {
 
 			while (nbClients >= sizeMax) {
-				System.out.println("Je suis ici");
 				try {
 					wait();
 				} catch (InterruptedException e) {
@@ -111,4 +125,21 @@ public class Restaurant implements Database {
 
 		return null;
 	}
+	
+	public BuffetLegumes getLegumes() {
+		return legumes;
+	}
+
+	public BuffetViande getViandes() {
+		return viandes;
+	}
+
+	public BuffetNouilles getNouilles() {
+		return nouilles;
+	}
+
+	public BuffetPoisson getPoissons() {
+		return poissons;
+	}
+
 }
